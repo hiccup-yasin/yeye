@@ -12,7 +12,13 @@ export default function Home() {
 			style={{
 				width: '100%',
 				height: '100%',
-				color: '#CBD5B2'
+				color: '#f5f5f5'
+			}}
+			onClick={() => {
+				window.location.href = '/dashboard';
+			}}
+			onMouseOver={(e) => {
+				e.target.style.cursor = 'pointer';
 			}}
 		/>,
 		<AiOutlineInfoCircle
@@ -20,7 +26,13 @@ export default function Home() {
 			style={{
 				width: '100%',
 				height: '100%',
-				color: '#CBD5B2'
+				color: '#f5f5f5'
+			}}
+			onClick={() => {
+				window.location.href = '/about';
+			}}
+			onMouseOver={(e) => {
+				e.target.style.cursor = 'pointer';
 			}}
 		/>,
 		<AiOutlineShareAlt
@@ -28,7 +40,13 @@ export default function Home() {
 			style={{
 				width: '100%',
 				height: '100%',
-				color: '#CBD5B2'
+				color: '#f5f5f5'
+			}}
+			onClick={() => {
+				window.location.href = '/contact';
+			}}
+			onMouseOver={(e) => {
+				e.target.style.cursor = 'pointer';
 			}}
 		/>
 	];
