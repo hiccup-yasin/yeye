@@ -41,7 +41,7 @@ def get_temp_value():
 def get_distance_value():
     GPIO.setmode(GPIO.BOARD)
 
-    PIN_TRIGGER = 7
+    PIN_TRIGGER = 13
     PIN_ECHO = 11
 
     GPIO.setup(PIN_TRIGGER, GPIO.OUT)
