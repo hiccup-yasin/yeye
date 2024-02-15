@@ -42,9 +42,9 @@ def get_temp_value():
 def get_distance_value():
     if GPIO.getmode() is None:
         GPIO.setmode(GPIO.BOARD)
-
-    PIN_TRIGGER = 16
-    PIN_ECHO = 18
+        
+    PIN_TRIGGER = 13
+    PIN_ECHO = 11
 
     GPIO.setup(PIN_TRIGGER, GPIO.OUT)
     GPIO.setup(PIN_ECHO, GPIO.IN)
@@ -54,7 +54,7 @@ def get_distance_value():
     time.sleep(2)
 
     GPIO.output(PIN_TRIGGER, GPIO.HIGH)
-
+    
     time.sleep(0.00001)
 
     GPIO.output(PIN_TRIGGER, GPIO.LOW)
@@ -70,7 +70,7 @@ def get_distance_value():
     GPIO.cleanup()
     
     return distance
-
+  
 @app.route('/')
 def home():
     return jsonify({ 'success': "ok"})
@@ -79,8 +79,7 @@ def home():
 def read_sensor():
     light_value = get_light_value()
     temp_value = get_temp_value()
-    distance_value = get_distance_value()
-    return jsonify({ 'light': light_value, "temp": temp_value, "distance": distance_value})
+    return jsonify({ 'light': light_value, "temp": temp_value, 'distance': get_distance_value()})
 
 if __name__ == '__main__':
     app.run( port=4000, debug=True, threaded=False)
