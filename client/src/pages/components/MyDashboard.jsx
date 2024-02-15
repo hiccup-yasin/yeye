@@ -7,8 +7,7 @@ export default function MyDashboard({ setHistoryRecArr }) {
 		light: 0
 	});
 
-	function setProgressValue() {
-		// Start an interval that runs every 300 milliseconds
+	async function setProgressValue() {
 		const intervalId = setInterval(() => {
 			setProgress({
 				distance: Math.floor(Math.random() * 100) + 1,
@@ -17,15 +16,14 @@ export default function MyDashboard({ setHistoryRecArr }) {
 			});
 		}, 200);
 
-		// After 10 seconds, clear the interval and set the values to 0
-		setTimeout(() => {
-			clearInterval(intervalId);
-			setProgress({
-				distance: 0,
-				temperature: 0,
-				light: 0
-			});
-		}, 10000);
+		const response = await fetch('http://127.0.0.1:4000/mockdata');
+		const data = await response.json();
+		clearInterval(intervalId);
+		setProgress({
+			distance: data.distance,
+			temperature: data.temp,
+			light: data.light
+		});
 	}
 
 	function saveData() {
