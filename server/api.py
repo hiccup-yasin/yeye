@@ -11,6 +11,10 @@ def get_light_value():
     ldr = LightSensor(21)
     return(ldr.value)
 
+@app.route('/')
+def home():
+    return jsonify({ 'success': "ok"})
+    
 @app.route('/data')
 def read_sensor():
     light_value = get_light_value()
