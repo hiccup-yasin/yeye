@@ -1,3 +1,4 @@
+#!/usr/bin/python
 from flask import Flask, jsonify
 from flask_cors import CORS
 import RPi.GPIO as GPIO
@@ -39,7 +40,8 @@ def get_temp_value():
         return temp_c
 
 def get_distance_value():
-    GPIO.setmode(GPIO.BOARD)
+    if GPIO.getmode() is None:
+        GPIO.setmode(GPIO.BOARD)
 
     PIN_TRIGGER = 16
     PIN_ECHO = 18
@@ -64,7 +66,9 @@ def get_distance_value():
 
     pulse_duration = pulse_end_time - pulse_start_time
     distance = round(pulse_duration * 17150, 2)
-
+    
+    GPIO.cleanup()
+    
     return distance
 
 @app.route('/')
@@ -80,4 +84,5 @@ def read_sensor():
 
 if __name__ == '__main__':
     app.run( port=4000, debug=True, threaded=False)
+
 
