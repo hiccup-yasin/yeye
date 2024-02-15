@@ -21,5 +21,5 @@ def read_sensor():
     return jsonify({ 'light': light_value})
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0',debug=True, port=4000)
+    app.run(host='127.0.1.1', port=4000, debug=True, threaded=False)
 
