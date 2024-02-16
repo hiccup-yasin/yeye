@@ -17,9 +17,10 @@ export default function MyDashboard({ setHistoryRecArr }) {
 		}, 200);
 
 		try {
-			const response = await fetch('192.168.254.112:4000/data', {
-				method: 'GET'
-			});
+			const response = await fetch('http://192.168.254.112:4000/data');
+
+			clearInterval(intervalId);
+
 			const data = await response.json();
 
 			console.log(data);
@@ -27,7 +28,7 @@ export default function MyDashboard({ setHistoryRecArr }) {
 			setProgress({
 				distance: data.distance,
 				temperature: data.temp,
-				light: data.light
+				light: Math.round(data.light * 100)
 			});
 		} catch (e) {
 			console.log(e, 'Error');
@@ -144,7 +145,7 @@ export default function MyDashboard({ setHistoryRecArr }) {
 					>
 						<div style={{ width: '75px', height: 'auto' }}>
 							<CircularProgressbar
-								text={`${progress.distance}%`}
+								text={`${progress.distance}cm`}
 								value={progress.distance}
 								strokeWidth={10}
 								styles={buildStyles({
@@ -171,7 +172,7 @@ export default function MyDashboard({ setHistoryRecArr }) {
 					>
 						<div style={{ width: '75px', height: 'auto' }}>
 							<CircularProgressbar
-								text={`${progress.temperature}%`}
+								text={`${progress.temperature}°C`}
 								value={progress.temperature}
 								strokeWidth={10}
 								styles={buildStyles({
