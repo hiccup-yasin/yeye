@@ -16,14 +16,24 @@ export default function MyDashboard({ setHistoryRecArr }) {
 			});
 		}, 200);
 
-		const response = await fetch('http://127.0.0.1:4000/mockdata');
-		const data = await response.json();
-		clearInterval(intervalId);
-		setProgress({
-			distance: data.distance,
-			temperature: data.temp,
-			light: data.light
-		});
+		try {
+			const response = await fetch('192.168.254.112/data', {
+				method: 'GET'
+			});
+			const data = await response.json();
+
+			console.log(data);
+
+			setProgress({
+				distance: data.distance,
+				temperature: data.temp,
+				light: data.light
+			});
+		} catch (e) {
+			console.log(e, 'Error');
+		} finally {
+			clearInterval(intervalId);
+		}
 	}
 
 	function saveData() {

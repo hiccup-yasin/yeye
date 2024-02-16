@@ -82,6 +82,7 @@ def read_sensor():
     return jsonify({ 'light': light_value, "temp": temp_value, 'distance': get_distance_value()})
 
 if __name__ == '__main__':
-    app.run( port=4000, debug=True, threaded=False)
+    app.run( host='0.0.0.0',port=4000)
+
 
 
