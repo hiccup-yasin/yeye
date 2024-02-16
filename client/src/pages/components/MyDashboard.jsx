@@ -17,7 +17,7 @@ export default function MyDashboard({ setHistoryRecArr }) {
 		}, 200);
 
 		try {
-			const response = await fetch('192.168.254.112/data', {
+			const response = await fetch('192.168.254.112:4000/data', {
 				method: 'GET'
 			});
 			const data = await response.json();
