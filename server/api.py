@@ -90,7 +90,7 @@ def home():
 def data():
     return jsonify({ 
     'light': get_light_value(),
-    'distance': get_distance_value()
+    'distance': get_distance_value(),
     "temp": get_temp_value(), 
 
     })
