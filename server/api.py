@@ -30,6 +30,7 @@ def get_light_value():
            
     ldr = LightSensor(21)
     
+    print("Light Value:", ldr.value)
     return(ldr.value)
 
 def get_temp_value():
@@ -42,6 +43,8 @@ def get_temp_value():
         temp_string = lines[1][equals_pos+2:]
         temp_c = float(temp_string) / 1000.0
         temp_f = temp_c * 9.0 / 5.0 + 32.0
+
+        print("Temp Value:", temp_c)
         return temp_c
 
 def get_distance_value():
@@ -76,6 +79,7 @@ def get_distance_value():
     
     GPIO.cleanup()
     
+    print("Distance Value:", distance)
     return distance
   
 @app.route('/')
