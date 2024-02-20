@@ -89,9 +89,10 @@ def home():
 @app.route('/data')
 def data():
     return jsonify({ 
-    "temp": get_temp_value(), 
     'light': get_light_value(),
     'distance': get_distance_value()
+    "temp": get_temp_value(), 
+
     })
 if __name__ == '__main__':
     app.run( host='0.0.0.0',port=4000)
