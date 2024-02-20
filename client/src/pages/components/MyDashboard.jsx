@@ -19,6 +19,8 @@ export default function MyDashboard({ setHistoryRecArr }) {
 		try {
 			const response = await fetch('http://192.168.254.112:4000/data');
 
+			console.log('Fetching data . . .');
+
 			clearInterval(intervalId);
 
 			const data = await response.json();
@@ -31,6 +33,8 @@ export default function MyDashboard({ setHistoryRecArr }) {
 				light: Math.round(data.light * 100)
 			});
 		} catch (e) {
+			console.log('Error Fetching data . . .');
+
 			console.log(e, 'Error');
 		} finally {
 			clearInterval(intervalId);
