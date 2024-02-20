@@ -17,9 +17,9 @@ export default function MyDashboard({ setHistoryRecArr }) {
 		}, 200);
 
 		try {
-			const response = await fetch('http://192.168.254.112:4000/data');
-
 			console.log('Fetching data . . .');
+
+			const response = await fetch('http://192.168.254.112:4000/data');
 
 			clearInterval(intervalId);
 
