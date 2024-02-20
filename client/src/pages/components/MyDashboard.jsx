@@ -1,11 +1,34 @@
 import { CircularProgressbar, buildStyles } from 'react-circular-progressbar';
 import { useState } from 'react';
+import os from 'os';
+
 export default function MyDashboard({ setHistoryRecArr }) {
 	const [progress, setProgress] = useState({
 		distance: 0,
 		temperature: 0,
 		light: 0
 	});
+
+	const getLocalIPAddress = () => {
+		const interfaces = os.networkInterfaces();
+		let localIPAddress;
+
+		for (const interfaceName of Object.keys(interfaces)) {
+			const networkInterface = interfaces[interfaceName];
+			for (const entry of networkInterface) {
+				// Check for IPv4 and non-internal (i.e., not 127.0.0.1) addresses
+				if (entry.family === 'IPv4' && !entry.internal) {
+					localIPAddress = entry.address;
+					break;
+				}
+			}
+			if (localIPAddress) {
+				break;
+			}
+		}
+
+		return localIPAddress;
+	};
 
 	async function setProgressValue() {
 		const intervalId = setInterval(() => {
@@ -17,20 +40,17 @@ export default function MyDashboard({ setHistoryRecArr }) {
 		}, 200);
 
 		try {
-			const response = await fetch('https://api.ipify.org?format=json');
-			const data = await response.json();
-			const ipAddress = data.ip;
-			console.log('Your public IP address is:', ipAddress);
-			console.log('Fetching data . . .');
-
+			const localIPAddress = getLocalIPAddress();
+			console.log('Your local IP address is:', localIPAddress);
+			// console.log('Fetching data . . .');
 			// const response = await fetch('http://192.168.1.45:4000/data');
 			// const data = await response.json();
 
-			setProgress({
-				distance: data.distance,
-				temperature: data.temp,
-				light: Math.round(data.light * 100)
-			});
+			// setProgress({
+			// 	distance: data.distance,
+			// 	temperature: data.temp,
+			// 	light: Math.round(data.light * 100)
+			// });
 		} catch (e) {
 			console.log('Error Fetching data . . .');
 
