@@ -17,15 +17,14 @@ export default function MyDashboard({ setHistoryRecArr }) {
 		}, 200);
 
 		try {
+			const response = await fetch('https://api.ipify.org?format=json');
+			const data = await response.json();
+			const ipAddress = data.ip;
+			console.log('Your public IP address is:', ipAddress);
 			console.log('Fetching data . . .');
 
-			const response = await fetch('http://192.168.254.112:4000/data');
-
-			clearInterval(intervalId);
-
-			const data = await response.json();
-
-			console.log(data);
+			// const response = await fetch('http://192.168.1.45:4000/data');
+			// const data = await response.json();
 
 			setProgress({
 				distance: data.distance,
