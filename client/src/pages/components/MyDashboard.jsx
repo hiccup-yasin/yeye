@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import { CircularProgressbar, buildStyles } from 'react-circular-progressbar';
 import { useState } from 'react';
 
@@ -19,9 +20,11 @@ export default function MyDashboard({ setHistoryRecArr }) {
 
 		try {
 			const localIPAddress = window.location.host.split(':')[0];
-			console.log('Your local IP address is:', localIPAddress);
+
 			console.log('Fetching data . . .');
+
 			const response = await fetch(`http://${localIPAddress}:4000/data`);
+
 			const data = await response.json();
 
 			setProgress({

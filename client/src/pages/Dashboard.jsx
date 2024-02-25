@@ -16,6 +16,7 @@ export default function Dashboard() {
 		setSelectedRecord(record);
 		setModalIsOpen(true);
 	}
+	const reversedHistoryRecArr = historyRecArr.slice().reverse();
 
 	return (
 		<>
@@ -70,7 +71,7 @@ export default function Dashboard() {
 								<h3>No history yet</h3>
 							</div>
 						) : (
-							historyRecArr.map((historyRec, index) => {
+							reversedHistoryRecArr.map((historyRec, index) => {
 								return (
 									<HistoryRecord
 										key={index}
@@ -109,15 +110,17 @@ export default function Dashboard() {
 						borderRadius: '30px',
 						padding: '20px',
 						width: '25%', // Adjust this value to change the size of the modal
-						height: '25%' // Adjust this value to change the size of the modal
+						height: '26%' // Adjust this value to change the size of the modal
 					}
 				}}
 			>
-				<h2>History Record Details</h2>
+				<h2>History Record Details </h2>
 				{selectedRecord && (
 					<div>
-						<p>Date: {selectedRecord.date.toLocaleDateString()}</p>
-						{/* Display other properties of the record here */}
+						<div>Date: {selectedRecord.date.toLocaleDateString()}</div>
+						<div>DRC Value: {selectedRecord.light}%</div>
+						<div>Temp Value: {selectedRecord.temperature}°C</div>
+						<div>Distance Value: {selectedRecord.distance} cm</div>
 					</div>
 				)}
 				<button
@@ -125,7 +128,8 @@ export default function Dashboard() {
 						backgroundColor: '#FF4D4D',
 						color: '#FFFFFF',
 						borderRadius: '15px',
-						border: '1px solid #3C4866'
+						border: '1px solid #3C4866',
+						marginTop: '5px'
 					}}
 					onClick={() => setModalIsOpen(false)}
 				>

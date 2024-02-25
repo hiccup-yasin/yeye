@@ -21,21 +21,23 @@ export default function HistoryRecord({ historyRec, openModal }) {
 					<h3>
 						{historyRec.date.toLocaleDateString('en-US', {
 							year: 'numeric',
-							month: 'long',
+							month: 'short',
 							day: 'numeric'
 						})}
 					</h3>
 					<div style={{ display: 'inline-flex' }}>
-						{historyRec.date.toLocaleTimeString('en-US', {
-							hour: 'numeric',
-							minute: 'numeric',
-							hour12: true
-						})}
+						<div style={{ fontSize: '12px' }}>
+							{historyRec.date.toLocaleTimeString('en-US', {
+								hour: 'numeric',
+								minute: 'numeric',
+								hour12: true
+							})}
+						</div>
 						<div
 							style={{
 								fontSize: '10px',
 								marginLeft: '20px',
-								marginTop: '5px'
+								marginTop: '2px'
 							}}
 							onClick={() => openModal(historyRec)}
 						>
@@ -52,7 +54,7 @@ export default function HistoryRecord({ historyRec, openModal }) {
 						color: '#17BAA2'
 					}}
 				>
-					<h2>50%</h2>
+					<h2>{historyRec.light}%</h2>
 				</div>
 			</div>
 			{/* Second row */}
