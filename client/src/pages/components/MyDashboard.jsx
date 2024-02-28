@@ -30,7 +30,7 @@ export default function MyDashboard({ setHistoryRecArr }) {
 			setProgress({
 				distance: data.distance,
 				temperature: data.temp,
-				light: Math.round(data.light * 100)
+				light: 100 - Math.round(data.light * 100).toFixed(2)
 			});
 		} catch (e) {
 			console.log('Error Fetching data . . .');
