@@ -60,7 +60,7 @@ export default function HistoryRecord({ historyRec, openModal }) {
 			{/* Second row */}
 			<ProgressBar
 				className=""
-				completed={60}
+				completed={historyRec.light}
 				bgColor="linear-gradient(90deg, #45F8C0 0%, #297FD9 100%)"
 				isLabelVisible={false}
 			/>
